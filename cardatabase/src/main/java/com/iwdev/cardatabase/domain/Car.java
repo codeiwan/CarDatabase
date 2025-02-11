@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String brand, model, color, registrationNumber;
 
     private int modelYear, price;
 
-    public Car(){
+    public Car() {
     }
 
     public Car(String brand, String model, String color, String registrationNumber, int modelYear, int price, Owner owner) {
@@ -30,7 +30,15 @@ public class Car {
     @JoinColumn(name = "owner")
     private Owner owner;
 
-    // Getter ans setter
+    // Getter and setter
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     public Long getId() {
         return id;
     }
@@ -43,7 +51,7 @@ public class Car {
         return brand;
     }
 
-    public void setBrand() {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 

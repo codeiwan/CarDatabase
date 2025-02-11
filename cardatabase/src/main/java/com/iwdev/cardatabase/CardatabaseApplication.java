@@ -39,7 +39,7 @@ public class CardatabaseApplication implements CommandLineRunner {
 		repository.save(new Car("Nissan", "Leaf", "White", "SSJ-3002", 2020, 29000, owner2));
 		repository.save(new Car("Toyota", "Prius", "Silver", "KKO-0212", 2022, 39000, owner2));
 
-		// Fetch all cars log to console
+		// Fetch all cars and log to console
 		for (Car car : repository.findAll()) {
 			logger.info("brand: {}, model: {}", car.getBrand(), car.getModel());
 		}
