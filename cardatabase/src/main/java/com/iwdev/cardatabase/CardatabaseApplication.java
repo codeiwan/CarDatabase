@@ -1,9 +1,6 @@
 package com.iwdev.cardatabase;
 
-import com.iwdev.cardatabase.domain.Car;
-import com.iwdev.cardatabase.domain.CarRepository;
-import com.iwdev.cardatabase.domain.Owner;
-import com.iwdev.cardatabase.domain.OwnerRepository;
+import com.iwdev.cardatabase.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,10 +15,12 @@ public class CardatabaseApplication implements CommandLineRunner {
 
 	private final CarRepository repository;
 	private final OwnerRepository orepository;
+	private final AppUserRepository urepository;
 
-	public CardatabaseApplication(CarRepository repository, OwnerRepository orepository) {
+	public CardatabaseApplication(CarRepository repository, OwnerRepository orepository, AppUserRepository urepository) {
 		this.repository = repository;
 		this.orepository = orepository;
+		this.urepository = urepository;
 	}
 
 	public static void main(String[] args) {
@@ -43,5 +42,10 @@ public class CardatabaseApplication implements CommandLineRunner {
 		for (Car car : repository.findAll()) {
 			logger.info("brand: {}, model: {}", car.getBrand(), car.getModel());
 		}
+
+		// Username: user, password: user
+		urepository.save(new AppUser("user", "$2a$12$fhIT3ttuC49mRpu9COUAxu9p4lBvyVuH0HvpUPL2eKF/RLPKD0pTO", "USER"));
+		// Username: admin, password: admin
+		urepository.save(new AppUser("admin", "$2a$12$DXGx8rHSy1lxYUDgaLLlb.fo.XGGOoKfgrkUYt7YNAXqWz3THzJGu", "ADMIN"));
 	}
 }
